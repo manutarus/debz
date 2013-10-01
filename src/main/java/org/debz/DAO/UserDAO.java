@@ -10,7 +10,7 @@ import java.util.List;
  * Time: 12:27 PM
  */
 public interface UserDAO {
-    public void addUser(User user);
+    public User saveUser(User user);
     public void updateUser(User user);
     public User getUser(long id);
     public void deleteUser(int id);

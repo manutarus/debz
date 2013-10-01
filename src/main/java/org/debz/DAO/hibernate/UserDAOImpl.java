@@ -1,5 +1,7 @@
 package org.debz.DAO.hibernate;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.debz.DAO.UserDAO;
 import org.debz.model.User;
 import org.hibernate.Session;
@@ -21,13 +23,18 @@ public class UserDAOImpl implements UserDAO {
 
     @Autowired
     SessionFactory sessionFactory;
+    private Log log = LogFactory.getLog(this.getClass());
 
     public Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 
-    public void addUser(User user) {
-        getCurrentSession().save(user);
+    @Transactional
+    @Override
+    public User saveUser(User user) {
+        sessionFactory.getCurrentSession().saveOrUpdate(user);
+        log.info("Person saved successfully");
+        return user;
     }
 
     public void updateUser(User user) {

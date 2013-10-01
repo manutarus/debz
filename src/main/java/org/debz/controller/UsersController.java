@@ -9,11 +9,9 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.apache.commons.logging.Log;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +31,7 @@ public class UsersController {
     private UserService userService;
 
     private static final String LIST_VIEW = "userList";
+    private static final String SUCCESS_VIEW = "redirect:/list/users.json";
     private final Log log = LogFactory.getLog(PersonListController.class);
 
     @RequestMapping(value = "users.json", method = RequestMethod.GET)
@@ -56,6 +55,15 @@ public class UsersController {
             userArray.put(userJSON);
         }
         return userArray.toString();
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "createperson.form")
+    public String saveUser(
+            @ModelAttribute("user") User user,BindingResult bindingResult) {
+
+        userService.saveUser(user);
+
+        return SUCCESS_VIEW;
     }
 
 

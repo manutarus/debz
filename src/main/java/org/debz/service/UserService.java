@@ -14,7 +14,7 @@ import java.util.List;
 @Transactional
 public interface UserService {
 
-    public void addUser(User user);
+    public User saveUser(User user);
     public void updateUser(User user);
     public User getUser(long id);
     public void deleteUser(int id);
