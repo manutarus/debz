@@ -11,7 +11,9 @@
 
 <script src="resources/js/angular.js"></script>
 
+<div><h4>${message}</h4></div>
 
+<p><a href="user.form">Create a new Person</a> </p>
 
 
 </body>
