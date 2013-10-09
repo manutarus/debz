@@ -38,7 +38,7 @@ public class IndexController {
 	public String printWelcome(ModelMap model) {
 
 		model.addAttribute("message", "Survay system'");
-		return "index";
+		return "index.jsp";
 	}
 
     @RequestMapping(method = RequestMethod.GET, value = "user.form")
